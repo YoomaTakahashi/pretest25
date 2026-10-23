@@ -1,7 +1,7 @@
 <template>
     <v-container>
-        <v-row jusify="center">
-            <v-col cols="12" md="12">
+        <v-row justify="center">
+            <v-col cols="12" md="8">
                 <v-card color="#7d0c14">
                     <v-card-title>
                         <center><v-img src="/img/logo.png" class="mt-3" width="20"></v-img></center>

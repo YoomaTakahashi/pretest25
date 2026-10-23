@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-row jusify="center">
+        <v-row justify="center">
             <v-col cols="12" md="12">
                 <v-card>
                     <v-card-title>
@@ -33,7 +33,7 @@
                                 <v-col cols="12" md="12">
                                     <center>
                                         <v-btn class="text-center ma-2" color="primary" type="submit">{{ form.id_member ? 'อัปเดต':'บันทึก' }}</v-btn>
-                                        <v-btn class="text-center ma-2" color="error" type="reset">ยกเลิก</v-btn>
+                                        <v-btn class="text-center ma-2" color="error" @click="reset()">ยกเลิก</v-btn>
                                     </center>
                                 </v-col>
                             </v-row>
@@ -91,6 +91,17 @@ const form = ref({
     password:'',
     role:''
 })
+const reset = ()=>{
+    form.value = {
+        id_member:null,
+        fname:'',
+        lname:'',
+        email:'',
+        username:'',
+        password:'',
+        role:''
+    }
+}
 const conP = ref('')
 const emailRegex = /^[^\s]+@[^\s]+\.[^\s]{2,}$/i
 function validateForm(){
@@ -106,7 +117,6 @@ function validateForm(){
 
     if(!f.password.trim())error.value.password = 'กรุณากรอกรหัสผ่าน'
     else if(f.password.trim().length < 6)error.value.password = 'รหัสผ่านต้องยาว 6 ตัวอักษร'
-    else if(f.password.trim() !== conP.value.trim())error.value.conP = 'รหัสผ่านไม่ตรงกัน'
 
     if(!f.role.trim())error.value.role = 'กรุณาเลือกประเภทสมาชิก'
 
