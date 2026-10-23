@@ -38,8 +38,8 @@
                                 </v-col>
                             </v-row>
                         </v-form>
-                        <v-text-field label="ค้นหา" placeholder="ค้นหา" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field>
-                        <v-table>
+                        <v-text-field label="ค้นหา" placeholder="ค้นหา" class="mt-3" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field>
+                        <v-table class="mt-3">
                             <thead>
                                 <tr>
                                     <th class="border text-center">ลำดับ</th>
@@ -62,6 +62,9 @@
                                         </center>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="text-red text-center" v-if="result.length === 0" colspan="12">ไม่พบข้อมูล</td>
+                                </tr>
                             </tbody>
                         </v-table>
                     </v-card-text>
@@ -74,11 +77,11 @@
 
 <script setup lang="ts">
 import axios from 'axios'
-import { api } from '~/API/base'
+import { api, staff } from '~/API/base'
 
 
 const error = ref<Record<string,string>>({})
-const pic_user = ref<File | null>(null)
+const dataResult = ref([])
 const typeR = ['ผู้รับการประเมินผล']
 const show = ref(false)
 const showPw = ref(false)
@@ -102,7 +105,7 @@ const reset = ()=>{
         role:''
     }
 }
-const conP = ref('')
+const search = ref('')
 const emailRegex = /^[^\s]+@[^\s]+\.[^\s]{2,}$/i
 function validateForm(){
     const f = form.value
@@ -123,20 +126,69 @@ function validateForm(){
     return Object.keys(error.value).length === 0
 }
 
-
+const token = import.meta.client ? localStorage.getItem('token'):null
 
 
 const saveMember = async()=>{
     if(!validateForm())return
-    const formdata = new FormData
-    formdata.append('form',JSON.stringify(form.value))
-    formdata.append('pic_user',pic_user.value!)
+    const f = form.value
+    const payload = {
+        fname:f.fname,
+        lname:f.lname,
+        email:f.email,
+        username:f.username,
+        password:f.password,
+        role:f.role,
+        ...(f.password ? {password:f.password}:null)
+    }
     try {
-        await axios.post(`${api}/auth/regis`,formdata)
+        f.id_member 
+        ? await axios.put(`${staff}/member/update/${f.id_member}`,payload,{headers:{Authorization:`Bearer ${token}`}})
+        : await axios.post(`${staff}/member/save`,{...payload,password:f.password},{headers:{Authorization:`Bearer ${token}`}})
         alert('ทำรายการสำเร็จ')
-        navigateTo('/',{replace:true})
+        await reset()
+        await fetch()
     } catch (error) {
-        console.error("Error regis",error);
+        console.error("Error save",error);
+        
+    }
+}
+
+
+const fetch = async()=>{
+
+    try {
+        const res = await axios.get(`${staff}/member/showE`,{headers:{Authorization:`Bearer ${token}`}})
+        dataResult.value = res.data
+    } catch (error) {
+        console.error("Error get",error);
+        
+    }
+
+}
+
+const result = computed(()=>{
+    if(!search.value)return dataResult.value
+    const s = search.value.toLowerCase()
+    return dataResult.value.filter((items:any)=>{
+        return(
+            items.username.toLowerCase().includes(s)
+        )
+    })
+})
+
+const edit = (items:any)=>{
+    form.value = {...items}
+}
+
+const del = async(id_member:number)=>{
+    if(!confirm('ต้องการลบข้อมูลชุดนี้ใช่หรือไม่'))return
+    try {
+        await axios.delete(`${staff}/member/delete/${id_member}`,{headers:{Authorization:`Bearer ${token}`}})
+        await reset()
+        await fetch()
+    } catch (error) {
+        console.error("error delete",error);
         
     }
 }

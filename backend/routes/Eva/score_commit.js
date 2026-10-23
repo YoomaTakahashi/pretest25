@@ -28,7 +28,7 @@ router.get('/scores',verifyToken,requireRole('ผู้รับการปร�
             const score_commit = row.score_commit
             const status_eva = row.status_eva
             if(!scores[id_indicate]){
-                scores[id]={
+                scores[id_indicate]={
                     a:null,
                     b:null,
                     c:null,
