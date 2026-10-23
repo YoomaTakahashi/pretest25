@@ -67,5 +67,22 @@ onMounted(fetch)
 </script>
 
 <style scoped>
+@media print {
+    .v-app-bar,.v-btn.no-p{
+        display: none !important;
+        margin: 0 !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
 
+    td,th{
+        color: black !important;
+        border: 1px solid black !important;
+    }
+
+    h1{
+        
+    }
+}
 </style>

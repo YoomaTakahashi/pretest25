@@ -6,7 +6,7 @@
                 <v-col v-for="b in box" :key="b" cols="12" md="4">
                     <v-card class="pa-3">
                         <v-card-text>
-                            <p>{{ b.title }}</p>
+                            <h3>{{ b.title }}</h3>
                             <p>{{ b.value }}</p>
                         </v-card-text>
                     </v-card>
@@ -16,7 +16,7 @@
                 <v-col v-for="b in box2" :key="b" cols="12" md="4">
                     <v-card class="pa-3">
                         <v-card-text>
-                            <p>{{ b.title }}</p>
+                            <h3>{{ b.title }}</h3>
                             <p>{{ b.value }}</p>
                         </v-card-text>
                     </v-card>
