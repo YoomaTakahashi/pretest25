@@ -18,7 +18,7 @@ router.post('/regis',async(req,res)=>{
             await pic_user.mv(path.join(uploadDir,filename))
         }
         const hash = await bc.hash(form.password,10)
-        const [rows] = await db.query(`insert into tb_member(fname,lname,email,username,password,role,pic_user) values(?,?,?,?,?,?,?)`,[form.fname,form.lname,form.email,form.username,hash,form.role,form.filename])
+        const [rows] = await db.query(`insert into tb_member(fname,lname,email,username,password,role,pic_user) values(?,?,?,?,?,?,?)`,[form.fname,form.lname,form.email,form.username,hash,form.role,filename])
         res.json(rows)
     } catch (error) {
         console.error("Error regis",error);
