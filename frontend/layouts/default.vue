@@ -1,20 +1,19 @@
 <template>
-    <v-app>
-        <v-app-bar>
+        <v-app-bar :color="bg(user.role)" flat elevation="5" class="rounded-b" >
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title class="font-weight-bold">NTC EVALAUTION SYSTEM</v-toolbar-title>
             <v-spacer></v-spacer>
 
             <p class="text-center">คุณ : {{ user.fname }} {{ user.lname }} <br> ตำแหน่ง : {{ user.role }}</p>
-            <v-btn @click="logout" icon="mdi-logout" variant="text"></v-btn>
+            <v-btn @click="lotout" icon="mdi-logout" variant="text"  ></v-btn>
         </v-app-bar>
         
-        <v-navigation-drawer app color="#404040" width="260" v-model="drawer" :teporary="isMobile"  >
+        <v-navigation-drawer app color="#404040" width="260" v-model="drawer" :temporary="isMobile" :permanent="!isMobile">
             <v-list density="comfortable">
                 <v-list-item>
                     <v-list-item-title class="font-weight-bold">NTC EVALAUTION SYSTEM</v-list-item-title>
                     <div class="mt-3">
-                        <v-chip class="text-white" variant="outlined" color="white"><h4>{{ user.role }}</h4></v-chip>
+                        <v-chip class="text-white" variant="outlined" color="white" ><h4>{{ user.role }}</h4></v-chip>
                     </div>
                 </v-list-item> 
             </v-list>
@@ -31,12 +30,11 @@
         </v-navigation-drawer>
 
         <v-main>
-            <v-container>
-                <slot></slot>
+            <v-container fluid class="py-2">
+                <slot/>
             </v-container>
-            <v-footer class="text-caption justify-center">© 2026 NTC EVALAUTION SYSTEM</v-footer>
-        </v-main>
-    </v-app>
+            <v-footer class="text-caption justify-center"></v-footer>
+        </v-main> 
 </template>
 
 <script setup lang="ts">
@@ -52,47 +50,77 @@ const isMobile = computed(()=> mdAndDown.value)
 const lotout = ()=>{
     if(!confirm('ท่าต้องการออกจากระบบใช่หรือไม่'))return
     localStorage.removeItem('token')
-    navigateTo('/')
+    navigateTo('/',{replace:true})
 }
 
 const roles = [
     //staff nav
 
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'จัดการผู้รับการประเมิน',to:'',role:''},
-    {title:'จัดการกรรมการประเมิน',to:'',role:''},
-    {title:'จัดการหัวข้อการประเมิน',to:'',role:''},
-    {title:'จัดการตัวชี้วัด',to:'',role:''},
-    {title:'จัดการรอบการประเมิน',to:'',role:''},
-    {title:'จัดการแบบประเมิน',to:'',role:''},
-    {title:'ผลการประเมินของ',to:'',role:''},
-    {title:'ผลการประเมินของ',to:'',role:''},
-    {title:'สถานะการประเมินของ',to:'',role:''},
-    {title:'สถานะการประเมินของ',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
-    {title:'หน้าหลัก',to:'',role:''},
+    {title:'หน้าหลัก',to:'/Staff/',role:'ฝ่ายบุคลากร'},
+    {title:'จัดการผู้รับการประเมิน',to:'/Staff/Manage_eva',role:'ฝ่ายบุคลากร'},
+    {title:'จัดการกรรมการประเมิน',to:'/Staff/Manage_commit',role:'ฝ่ายบุคลากร'},
+    {title:'จัดการหัวข้อการประเมิน',to:'/Staff/Topic',role:'ฝ่ายบุคลากร'},
+    {title:'จัดการตัวชี้วัด',to:'/Staff/Indicate',role:'ฝ่ายบุคลากร'},
+    {title:'จัดการรอบการประเมิน',to:'/Staff/Round',role:'ฝ่ายบุคลากร'},
+    {title:'จัดการแบบประเมิน',to:'/Staff/Eva',role:'ฝ่ายบุคลากร'},
+    {title:'ผลการประเมินของผู้รับการประเมินผล',to:'/Staff/Score_evaList',role:'ฝ่ายบุคลากร'},
+    {title:'ผลการประเมินของกรรมการประเมิน',to:'/Staff/Score_commitList',role:'ฝ่ายบุคลากร'},
+    {title:'สถานะการประเมินของผู้รับการประเมินผล',to:'/Staff/Status_eva',role:'ฝ่ายบุคลากร'},
+    {title:'สถานะการประเมินของกรรมการประเมิน',to:'/Staff/Status_commit',role:'ฝ่ายบุคลากร'},
+    {title:'เอกสารและคู่มือการประเมิน',to:'/Staff/Document',role:'ฝ่ายบุคลากร'},
+    {title:'รายงาน',to:'/Staff/report',role:'ฝ่ายบุคลากร'},
+    {title:'การสำรองข้อมูล',to:'/Staff/backup',role:'ฝ่ายบุคลากร'},
+
+
+    {title:'หน้าหลัก',to:'/Evaluatee/',role:'ผู้รับการประเมินผล'},
+    {title:'แก้ไขข้อมูล่วนตัว',to:'/Evaluatee/edit_eva',role:'ผู้รับการประเมินผล'},
+    {title:'แบบประเมินตนเอง',to:'/Evaluatee/selfeva',role:'ผู้รับการประเมินผล'},
+    {title:'ตรวจสอบผลการผลการประเมิน',to:'/Evaluatee/check_score',role:'ผู้รับการประเมินผล'},
+    {title:'รายงาน',to:'/Evaluatee/report',role:'ผู้รับการประเมินผล'},
+    {title:'คู่มือการประเมิน',to:'/Evaluatee/doc',role:'ผู้รับการประเมินผล'},
+
+
+    {title:'รายชื่อผู้รับการประเมิน',to:'/Committee/',role:'กรรมการประเมิน'},
+    {title:'ดำเนินการประเมิน',to:'/Committee/show_eva',role:'กรรมการประเมิน'},
+    {title:'ตรวจสอบและยืนยันผล',to:'/Committee/check_confirm',role:'กรรมการประเมิน'},
+    {title:'คู่มือการประเมิน',to:'/Committee/doc',role:'กรรมการประเมิน'},
+
 ]
+
+const navitem = computed(()=> roles.filter((item)=> item.role === user.value.role))
+
+const fetch = async()=>{
+    const token = localStorage.getItem('token')
+    if(!token){
+        return navigateTo('/',{replace:true})
+    }
+    try {
+        const res = await axios.get(`${api}/profile`,{headers:{Authorization:`Bearer ${token}`}})
+        user.value = res.data
+    } catch (error) {
+        console.error('Error get Profile',error)
+        localStorage.removeItem('token')
+        navigateTo('/',{replace:true})
+    }
+}
+
+onMounted(fetch)
+
+const bg = (role:string) =>{
+    if(role === 'ฝ่ายบุคลากร')return '#647687'
+    if(role === 'กรรมการประเมิน')return '#007FFF'
+    if(role === 'ผู้รับการประเมินผล')return '#7d0c14'
+}
 </script>
 
 <style scoped>
-
+@media print {
+    .v-app-bar,.v-btn.no-p{
+        display: none !important;
+        margin: 0 !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+}
 </style>

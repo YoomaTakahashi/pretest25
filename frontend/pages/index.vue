@@ -4,7 +4,7 @@
             <v-col cols="12" md="8">
                 <v-card color="#7d0c14">
                     <v-card-title>
-                        <center><v-img src="/img/logo.png" class="mt-3" width="20"></v-img></center>
+                        <center><v-img src="/img/logo.png" class="mt-3" width="200"></v-img></center>
                         <h1 class="text-center">เข้าสู่ระบบ</h1>
                         <h2 class="text-center">NTC Evaluation System</h2>
                         <h2 class="text-center">ระบบประเมินบุคลากรวิทยาลัยเทคนิคน่าน</h2>
@@ -22,7 +22,7 @@
                                     <v-text-field label="รหัสผ่าน" v-model="password" :prepend-inner-icon="show ? 'mdi-eye':'mdi-eye-off'" :type="showPw ? 'text':'password'" @click:prepend-inner="show = !show , showPw = !showPw"> </v-text-field>
                                 </v-col>
 
-                                <v-col cols="12" md="6">
+                                <v-col cols="12" md="12">
                                     <v-select label="ประเภทสมาชิก" v-model="role"  prepend-inner-icon="mdi-account-group" :items="typeR"> </v-select>
                                 </v-col>
 

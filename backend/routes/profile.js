@@ -1,5 +1,5 @@
 const express = require('express')
-const db = require('')
+const db = require('../db')
 const router = express.Router()
 const {verifyToken} = require('../middleware/authmiddleware')
 
@@ -14,4 +14,4 @@ router.get('/',verifyToken,async (req,res) => {
     }
 })
 
-module.exports =router
+module.exports = router
