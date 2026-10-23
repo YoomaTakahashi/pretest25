@@ -62,6 +62,8 @@ const print = ()=>{
     window.print()
 }
 
+
+onMounted(fetch)
 </script>
 
 <style scoped>

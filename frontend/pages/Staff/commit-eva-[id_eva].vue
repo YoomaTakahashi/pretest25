@@ -46,11 +46,11 @@
                             <tbody>
                                 <tr v-for="(items,index) in List" :key="items.id_commit">
                                     <td class="border text-center">{{ index+1 }}</td>
-                                    <td class="border text-center">{{ nemeOf(items.id_member) }}}</td>
+                                    <td class="border text-center">{{ nameOf(items.id_member) }}</td>
                                     <td class="border text-center">{{ items.role }}</td>
                                     <td class="border text-center">
                                         <center>
-                                            <v-btn class="text-center text-white ma-2" color="error" @click="del(items.id_eva)" size="small">ลบ</v-btn>
+                                            <v-btn class="text-center text-white ma-2" color="error" @click="del(items.id_commit)" size="small">ลบ</v-btn>
                                         </center>
                                     </td>
                                 </tr>
@@ -145,7 +145,7 @@ const ROLE = (idx:number)=>{
     const picked = List.value.map((c,i)=> (i !== idx ? c.role : null ))
     return role.filter((p)=> !picked.includes(p))
 }
-
+onMounted(fetch)
 </script>
 
 <style scoped>
