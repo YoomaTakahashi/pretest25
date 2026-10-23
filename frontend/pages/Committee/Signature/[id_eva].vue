@@ -4,7 +4,7 @@
             <v-col cols="12" md="12">
                 <v-card>
                     <v-card-title>
-                        <h1 class="text-center">เอกสารและคู่มือการประเมิน</h1>
+                        <h1 class="text-center">ยืนยันผลการประเมิน</h1>
                     </v-card-title>
                     <v-card-text>
                         <br>
@@ -29,28 +29,18 @@
                                 <tr>
                                     <th class="border text-center">ลำดับ</th>
                                     <th class="border text-center">ชื่อเอกสาร</th>
-                                    <th class="border text-center">วันที่ออกเอกสาร</th>
-                                    <th class="border text-center">เอกสาร</th>
                                     <th class="border text-center">จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr >
-                                    <td class="border text-center">{{ dataResult+1 }}</td>
-                                    <td class="border text-center">{{ dataResult.name_doc }}</td>
-                                    <td class="border text-center">{{ formatDate(dataResult.day_doc) }}</td>
+                                    <td class="border text-center">{{ 1 }}</td>
+                                    <td class="border text-center">{{ dataResult.signature }}</td>
                                     <td class="border text-center">
                                         <v-btn class="text-center text-white ma-2" color="info" prepend-icon="mdi-eye" @click="view(dataResult.signature)" size="small">เปิดดู</v-btn>
+                                        <v-btn class="text-center text-white ma-2" color="error" @click="del(dataResult.id_eva)" size="small">ลบ</v-btn>
                                     </td>
-                                    <td class="border text-center">
-                                        <center>
-                                            
-                                            <v-btn class="text-center text-white ma-2" color="error" @click="del(dataResult.id_eva)" size="small">ลบ</v-btn>
-                                        </center>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-red text-center" v-if="result.length === 0" colspan="12">ไม่พบข้อมูล</td>
+                                    
                                 </tr>
                             </tbody>
                         </v-table>
@@ -69,7 +59,8 @@ import { api, staff,commit } from '~/API/base'
 const name_doc = ref('')
 const file = ref<File | null>(null)
 const error = ref<Record<string,string>>({})
-const dataResult = ref([])
+const dataResult = ref<{signature?: string | null}>({})
+const result = ref([])
 const id_eva = useRoute().params.id_eva
 const reset = ()=>{
     name_doc.value = ''
@@ -104,7 +95,7 @@ const saveMember = async()=>{
 const fetch = async()=>{
 
     try {
-        const res = await axios.get(`${commit}/signature/${id_eva}`,{headers:{Authorization:`Bearer ${token}`}})
+        const res = await axios.get(`${commit}/signature/user/${id_eva}`,{headers:{Authorization:`Bearer ${token}`}})
         dataResult.value = res.data
     } catch (error) {
         console.error("Error get",error);
@@ -113,6 +104,7 @@ const fetch = async()=>{
 
 }
 
+onMounted(fetch)
 
 
 
@@ -139,7 +131,7 @@ const del = async()=>{
 }
 
 const view = (file:string)=>{
-    const url = new URL(`/uploads/signature/${file}`,api).href
+    const url = new URL(`/uploads/document/${file}`,api).href
     window.open(url,'_blank')
 }
 

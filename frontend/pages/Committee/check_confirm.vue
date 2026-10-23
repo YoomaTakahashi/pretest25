@@ -73,7 +73,7 @@ const check = (id_eva:number) => {
     navigateTo({path:`/Committee/Score_commit/${id_eva}`})
 }
 const go = (id_eva:number) => {
-    navigateTo({path:`/Committee/Signature${id_eva}`})
+    navigateTo({path:`/Committee/Signature/${id_eva}`})
 }
 
 onMounted(fetch)
