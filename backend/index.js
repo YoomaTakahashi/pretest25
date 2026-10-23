@@ -28,6 +28,14 @@ app.use('/api/Eva/selfeva',selfeva)
 const score_member = require('./routes/Eva/score_member')
 app.use('/api/Eva/score_member',score_member)
 
+//staff
+
+const member = require('./routes/Staff/member')
+app.use('/api/Staff/member',member)
+
+const doc = require('./routes/Staff/doc')
+app.use('/api/Staff/doc',doc)
+
 app.use((req,res)=> res.status(404).json({message:"Route Not Found"}))
 app.listen(3001,()=>{
     console.log("Server Running on Port 3001");
