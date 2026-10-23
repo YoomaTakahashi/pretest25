@@ -82,7 +82,7 @@ onMounted(fetch)
     }
 
     h1{
-        
+        color: black !important;
     }
 }
 </style>
