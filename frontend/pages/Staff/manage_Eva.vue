@@ -38,8 +38,8 @@
                                 </v-col>
                             </v-row>
                         </v-form>
-                        <v-text-field label="ค้นหา" placeholder="ค้นหา" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field>
-                        <v-table>
+                        <v-text-field label="ค้นหา" placeholder="ค้นหา" class="mt-3" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field>
+                        <v-table class="mt-3">
                             <thead>
                                 <tr>
                                     <th class="border text-center">ลำดับ</th>
@@ -62,6 +62,9 @@
                                         </center>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="text-red text-center" v-if="result.length === 0" colspan="12">ไม่พบข้อมูล</td>
+                                </tr>
                             </tbody>
                         </v-table>
                     </v-card-text>
@@ -79,7 +82,7 @@ import { api, staff } from '~/API/base'
 
 const error = ref<Record<string,string>>({})
 const dataResult = ref([])
-const typeR = ['กรรมการประเมิน']
+const typeR = ['ผู้รับการประเมินผล']
 const show = ref(false)
 const showPw = ref(false)
 const form = ref({
@@ -155,7 +158,7 @@ const saveMember = async()=>{
 const fetch = async()=>{
 
     try {
-        const res = await axios.get(`${staff}/member/showC`,{headers:{Authorization:`Bearer ${token}`}})
+        const res = await axios.get(`${staff}/member/showE`,{headers:{Authorization:`Bearer ${token}`}})
         dataResult.value = res.data
     } catch (error) {
         console.error("Error get",error);

@@ -7,7 +7,7 @@
                         <h1 class="text-center">รายงาน</h1>
                     </v-card-title>
                     <v-card-text>
-                        <v-table>
+                        <v-table class="mt-3">
                             <thead>
                                 <tr>
                                     <th class="border text-center">ลำดับ</th>

@@ -23,10 +23,10 @@
                 </v-col>
             </v-row>
         </v-sheet>
-        <v-row>
+        <v-row class="mt-4">
             <v-col cols="12" md="12">
                 <v-card class="pa-3">
-                    <v-table>
+                    <v-table class="mt-3">
                         <thead>
                             <tr>
                                 <th class="border text-center">ลำดับ</th>
@@ -42,6 +42,9 @@
                                 <td class="border text-center">{{ items.email }}</td>
                                 <td class="border text-center">{{ items.username }}</td>
                             </tr>
+                            <tr>
+                                <td class="text-red text-center" v-if="result.length === 0" colspan="12">ไม่พบข้อมูล</td>
+                            </tr>
                         </tbody>
                     </v-table>
                 </v-card>
@@ -52,7 +55,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { staff } from '~/API/base';
+import { api, staff } from '~/API/base';
 
 const box = ref([])
 const box2 = ref([])

@@ -33,8 +33,8 @@
                                 </v-col>
                             </v-row>
                         </v-form>
-                        <!-- <v-text-field label="ค้นหา" placeholder="ค้นหา" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field> -->
-                        <v-table>
+                        <!-- <v-text-field label="ค้นหา" placeholder="ค้นหา" class="mt-3" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field> -->
+                        <v-table class="mt-3">
                             <thead>
                                 <tr>
                                     <th class="border text-center">ลำดับ</th>

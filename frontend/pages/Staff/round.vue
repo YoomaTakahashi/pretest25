@@ -36,8 +36,8 @@
                                 </v-col>
                             </v-row>
                         </v-form>
-                        <!-- <v-text-field label="ค้นหา" placeholder="ค้นหา" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field> -->
-                        <v-table>
+                        <!-- <v-text-field label="ค้นหา" placeholder="ค้นหา" class="mt-3" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field> -->
+                        <v-table class="mt-3">
                             <thead>
                                 <tr>
                                     <th class="border text-center">ลำดับ</th>
@@ -63,6 +63,9 @@
                                             <v-btn class="text-center text-white ma-2" color="error" @click="del(items.id_sys)" size="small">ลบ</v-btn>
                                         </center>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-red text-center" v-if="result.length === 0" colspan="12">ไม่พบข้อมูล</td>
                                 </tr>
                             </tbody>
                         </v-table>
