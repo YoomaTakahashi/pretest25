@@ -20,6 +20,9 @@ app.use('/api/auth',auth)
 const profile = require('./routes/profile')
 app.use('/api/profile',profile)
 
+const dash = require('./routes/dash')
+app.use('/api/dash',dash)
+
 //eva
 
 const selfeva = require('./routes/Eva/selfeva')
@@ -27,6 +30,12 @@ app.use('/api/Eva/selfeva',selfeva)
 
 const score_member = require('./routes/Eva/score_member')
 app.use('/api/Eva/score_member',score_member)
+
+const score_commit = require('./routes/Eva/score_commit')
+app.use('/api/Eva/score_commit',score_commit)
+
+const table = require('./routes/Eva/table')
+app.use('/api/Eva/table',table)
 
 //staff
 
@@ -50,6 +59,16 @@ app.use('/api/Staff/commit',commit)
 
 const doc = require('./routes/Staff/doc')
 app.use('/api/Staff/doc',doc)
+
+const status = require('./routes/Staff/status')
+app.use('/api/Staff/status',status)
+
+const score_member3 = require('./routes/Staff/score_member')
+app.use('/api/Staff/score_member',score_member3)
+
+const score_commit3 = require('./routes/Staff/score_commit')
+app.use('/api/Staff/score_commit',score_commit3)
+
 
 app.use((req,res)=> res.status(404).json({message:"Route Not Found"}))
 app.listen(3001,()=>{

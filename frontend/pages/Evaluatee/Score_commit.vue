@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols="12">
                 <v-form v-if="user.status_eva === 2" >
-                    <h1 class="font-weight-bold">ผลการประเมินของผู้รับการประเมินผล</h1>
+                    <h1 class="font-weight-bold">ผลการประเมินของกรรมการประเมิน</h1>
                      <v-card elevation="5" rounded class="pa-4" >
                         <p>ผู้ใช้งาน : {{ user.fname }} {{ user.lname }}</p>
                         <p>รอบการประเมินที่ : {{ user.round_sys }} {{ user.year_sys }}</p>
@@ -43,8 +43,7 @@
                             <label for="">ข้อเสนอแนะของกรรมการ</label>
                             <v-row>
                                 <v-col cols="12" v-for="commit,c in commits" :key="commit.id_commit">
-                                    {{ c+1 }}.{{ commit.fname }}{{ commit.lname }} <br>
-                                    {{ commit.level_commit }}
+                                    {{ c+1 }}.{{ commit.level_commit }} : {{ commit.detail_commit || 'รอการประเมิน' }}
                                 </v-col>
                             </v-row>
                         </v-card>
@@ -109,7 +108,7 @@ const fetchScore = async()=>{
 }
 
 onMounted(async()=>{
-    await Promise.all([fetch(),fetchTopic()])
+    await Promise.all([fetch(),fetchTopic(),fetchCommit(),fetchScore()])
 })
 
 
