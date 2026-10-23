@@ -28,7 +28,7 @@
                         <v-btn color="blue" type="submit">บันทึกคะแนน</v-btn>
                      </div>
                 </v-form>
-                <v-alert v-if="user.status_eva === 2|| user.status_eva ===3" variant="tonal" type="success" color="green">ประเมินสำเร็จ</v-alert>
+                <v-alert v-else-if="user.status_eva === 2|| user.status_eva ===3" variant="tonal" type="success" color="green">ประเมินสำเร็จ</v-alert>
                 <v-alert v-else variant="tonal" type="error" color="error">ไม่มีแบบประเมิน</v-alert >
             </v-col>
         </v-row>
