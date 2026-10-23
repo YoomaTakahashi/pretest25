@@ -1,4 +1,5 @@
 <template>
+    <v-app>
         <v-app-bar :color="bg(user.role)" flat elevation="5" class="rounded-b" >
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title class="font-weight-bold">NTC EVALAUTION SYSTEM</v-toolbar-title>
@@ -34,7 +35,8 @@
                 <slot/>
             </v-container>
             <v-footer class="text-caption justify-center"></v-footer>
-        </v-main> 
+        </v-main>
+    </v-app>
 </template>
 
 <script setup lang="ts">
