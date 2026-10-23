@@ -44,6 +44,11 @@
                             </v-row>
                         </v-card>
                      </div>
+                     <div class="mt-3">
+                        <div class="mt-3 text-center">
+                        <v-btn color="warning" @click="print" type="submit">พิมพ์</v-btn>
+                     </div>
+                     </div>
                 </v-form>
                 <v-alert v-else-if="user.status_eva === 1" variant="tonal" type="success" color="green">ประเมินสำเร็จ</v-alert>
                 <v-alert v-else variant="tonal" type="error" color="error">ไม่มีแบบประเมิน</v-alert >
@@ -61,9 +66,8 @@ const topics = ref<any>([])
 const commits = ref<any>([])
 const scores = ref<any>([])
 
-const viwe = (file:string) =>{
-    const url = new URL(`/uploads/file_eva/${(file)}`,api).href
-    window.open(url,'_blank')
+const print = ()=>{
+    window.print()
 }
 
 const fetch = async()=>{
