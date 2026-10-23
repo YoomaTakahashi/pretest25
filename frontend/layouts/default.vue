@@ -34,9 +34,9 @@
             <v-container fluid class="py-2">
                 <slot></slot>
             </v-container>
-            
+            <v-footer class="text-caption d-flex justify-center">© 2026 NTC EVALUATION SYSTEM</v-footer>
         </v-main>
-        <v-footer class="text-caption d-flex justify-center">© 2026 NTC EVALUATION SYSTEM</v-footer>
+        
     </v-app>
 </template>
 
