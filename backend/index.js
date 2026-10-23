@@ -60,6 +60,9 @@ app.use('/api/Commit/check',check)
 const score_commit2 = require('./routes/Commit/score_commit')
 app.use('/api/Commit/score_commit',score_commit2)
 
+const score_member2 = require('./routes/Commit/score_member')
+app.use('/api/Commit/score_member',score_member2)
+
 const save_score = require('./routes/Commit/save_score')
 app.use('/api/Commit/save_score',save_score)
 
