@@ -4,7 +4,7 @@
             <v-col cols="12" md="12">
                 <v-card color="#404040">
                     <v-card-title>
-                        <h1 class="text-center">แก้ไขข้อมูล่วนตัว</h1>
+                        <h1 class="text-center">แก้ไขข้อมูลส่วนตัว</h1>
                     </v-card-title>
                     <v-card-text class="bg-white">
                         <br>
@@ -29,7 +29,7 @@
                                     <v-text-field label="ยืนยันรหัสผ่าน" v-model="conP" :error-messages="error.conP" :prepend-inner-icon="show2 ? 'mdi-eye':'mdi-eye-off'" :type="showPw2 ? 'text':'password'" @click:prepend-inner="show2 = !show2 , showPw2 = !showPw2"> </v-text-field>
                                 </v-col>
                                 <v-col cols="12" md="12">
-                                    <v-alert variant="tonal" icon="mdi-account"></v-alert>
+                                    <v-alert variant="tonal" icon="mdi-account">{{ form.role }}</v-alert>
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -103,9 +103,9 @@ const saveMember = async()=>{
     const token = localStorage.getItem('token')
     if(!validateForm())return
     try {
-        await axios.post(`${eva}/edit_eva/`,form.value,{headers:{Authorization:`Bearer ${token}`}})
+        await axios.put(`${eva}/edit_eva/`,form.value,{headers:{Authorization:`Bearer ${token}`}})
         alert('ทำรายการสำเร็จ')
-        navigateTo('/',{replace:true})
+        window.location.reload()
     } catch (error) {
         console.error("Error regis",error);
         
