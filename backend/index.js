@@ -47,8 +47,32 @@ app.use('/api/Eva/edit_eva',edit_eva)
 const member = require('./routes/Staff/member')
 app.use('/api/Staff/member',member)
 
+const topic = require('./routes/Staff/topic')
+app.use('/api/Staff/topic',topic)
+
+const indicate = require('./routes/Staff/indicate')
+app.use('/api/Staff/indicate',indicate)
+
+const system = require('./routes/Staff/system')
+app.use('/api/Staff/system',system)
+
+const eva = require('./routes/Staff/eva')
+app.use('/api/Staff/eva',eva)
+
+const commit = require('./routes/Staff/commit')
+app.use('/api/Staff/commit',commit)
+
 const doc = require('./routes/Staff/doc')
 app.use('/api/Staff/doc',doc)
+
+const score_member3 = require('./routes/Staff/score_member')
+app.use('/api/Staff/score_member',score_member3)
+
+const score_commit3 = require('./routes/Staff/score_commit')
+app.use('/api/Staff/score_commit',score_commit3)
+
+const status = require('./routes/Staff/status')
+app.use('/api/Staff/status',status)
 //คอมมิท
 
 const show_eva = require('./routes/Commit/show_eva')
@@ -59,6 +83,12 @@ app.use('/api/Commit/check',check)
 
 const score_commit2 = require('./routes/Commit/score_commit')
 app.use('/api/Commit/score_commit',score_commit2)
+
+const score_member2 = require('./routes/Commit/score_member')
+app.use('/api/Commit/score_member',score_member2)
+
+const save_score = require('./routes/Commit/save_score')
+app.use('/api/Commit/save_score',save_score)
 
 const signature = require('./routes/Commit/signature')
 app.use('/api/Commit/signature',signature)

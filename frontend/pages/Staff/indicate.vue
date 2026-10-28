@@ -174,7 +174,7 @@ const del = async(id_indicate:number)=>{
     }
 }
 
-
+onMounted(fetch)
 </script>
 
 <style scoped>

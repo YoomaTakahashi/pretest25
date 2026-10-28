@@ -16,7 +16,7 @@
                                 <v-col cols="12" md="6">
                                     <v-select label="รอบการประเมิน" v-model="form.id_sys" :error-messages="error.id_sys" :items="round.map((t)=>({title:`รอบการประเมินที่:${t.round_sys} ${t.year_sys}`,value:t.id_sys}))"> </v-select>
                                 </v-col>
-                                <v-col cols="12" md="6">
+                                <v-col cols="12" md="12">
                                     <v-text-field label="วันที่ออกแบบประเมิน" v-model="form.day_eva" :error-messages="error.day_eva" type="date"> </v-text-field>
                                 </v-col>
                             </v-row>
@@ -42,7 +42,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(items,index) in result" :key="items.id_sys">
+                                <tr v-for="(items,index) in result" :key="items.id_eva">
                                     <td class="border text-center">{{ index+1 }}</td>
                                     <td class="border text-center">{{ items.fname }} {{ items.lname }}</td>
                                     <td class="border text-center">รอบการประเมินที่:{{ items.round_sys }} ปี:{{ items.year_sys }}</td>
@@ -159,7 +159,7 @@ const formatDate = (dateStr:string)=>{
     if(!dateStr)return '-'
     const date = new Date(dateStr)
     const day = String(date.getDate()).padStart(2,'0')
-    const month = String(date.getMonth()).padStart(2,'0')
+    const month = String(date.getMonth()+1).padStart(2,'0')
     const year = String(date.getFullYear())
 
     return `${day}/${month}/${year}`
@@ -181,7 +181,7 @@ const go =(id_eva)=>{
     navigateTo({path:`/Staff/commit-eva-${id_eva}`})
 }
 
-
+onMounted(fetch)
 </script>
 
 <style scoped>

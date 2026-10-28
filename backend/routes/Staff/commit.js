@@ -50,7 +50,7 @@ router.get('/header/:id_eva',verifyToken,requireRole('ฝ่ายบุคล�
     try {
         
         const {id_eva} = req.params
-        const [rows] = await db.query(`select * from tb_eva e,tb_system s, tb_member m where e.id_eva =? and e.id_sys = s.id_sys and e.id_member = m.id_member order by id_eva desc`)
+        const [rows] = await db.query(`select * from tb_eva e,tb_system s, tb_member m where e.id_eva =? and e.id_sys = s.id_sys and e.id_member = m.id_member order by id_eva desc`,[id_eva])
         res.json(rows[0])
 
         

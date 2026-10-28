@@ -131,7 +131,7 @@ const del = async()=>{
 }
 
 const view = (file:string)=>{
-    const url = new URL(`/uploads/document/${file}`,api).href
+    const url = new URL(`/uploads/signature/${file}`,api).href
     window.open(url,'_blank')
 }
 

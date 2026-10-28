@@ -46,7 +46,7 @@
                      </div>
                      <div class="mt-3">
                         <div class="mt-3 text-center">
-                        <v-btn color="warning" @click="print" type="submit">พิมพื</v-btn>
+                        <v-btn color="warning" @click="print" type="submit">พิมพ์</v-btn>
                      </div>
                      </div>
                 </v-form>
