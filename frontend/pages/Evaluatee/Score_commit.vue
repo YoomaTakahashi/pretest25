@@ -49,7 +49,7 @@
                         </v-card>
                      </div>
                 </v-form>
-                <v-alert v-else-if="user.status_eva === 1" variant="tonal" type="success" color="green">ประเมินสำเร็จ</v-alert>
+                <v-alert v-else-if="user.status_eva === 1" variant="tonal" type="warning" color="warning">ยังไม่ได้ประเมินตนเอง</v-alert>
                 <v-alert v-else variant="tonal" type="error" color="error">ไม่มีแบบประเมิน</v-alert >
             </v-col>
         </v-row>
