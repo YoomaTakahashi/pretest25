@@ -1,9 +1,9 @@
-<template>
+ไ<template>
     <v-container>
         <v-row>
             <v-col cols="12">
                 <v-form v-if="user.status_eva === 2" >
-                    <h1 class="font-weight-bold">ผลการประเมินของกรรมการประเมิน</h1>
+                    <h1 class="font-weight-bold">รายงาน</h1>
                      <v-card elevation="5" rounded class="pa-4" >
                         <p>ผู้ใช้งาน : {{ user.fname }} {{ user.lname }}</p>
                         <p>รอบการประเมินที่ : {{ user.round_sys }} {{ user.year_sys }}</p>
@@ -44,6 +44,11 @@
                             </v-row>
                         </v-card>
                      </div>
+                     <div class="mt-3">
+                        <div class="mt-3 text-center">
+                        <v-btn color="warning" @click="print" type="submit">พิมพื</v-btn>
+                     </div>
+                     </div>
                 </v-form>
                 <v-alert v-else-if="user.status_eva === 1" variant="tonal" type="success" color="green">ประเมินสำเร็จ</v-alert>
                 <v-alert v-else variant="tonal" type="error" color="error">ไม่มีแบบประเมิน</v-alert >
@@ -61,9 +66,8 @@ const topics = ref<any>([])
 const commits = ref<any>([])
 const scores = ref<any>([])
 
-const viwe = (file:string) =>{
-    const url = new URL(`/uploads/file_eva/${(file)}`,api).href
-    window.open(url,'_blank')
+const print = ()=>{
+    window.print()
 }
 
 const fetch = async()=>{
